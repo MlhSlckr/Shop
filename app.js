@@ -5,8 +5,11 @@ const price = document.querySelector(".price");
 const text = document.querySelector(".text");
 const title = document.querySelector(".title");
 const img = document.querySelector(".img");
+const numbers = document.querySelectorAll(".number");
+const minuss = document.querySelectorAll(".minus");
+const pluss = document.querySelectorAll(".plus");
+
 let totalPrice = 0;
-let currentItem = 0;
 /*
 const items = [
   {
@@ -38,6 +41,7 @@ shopping.addEventListener("click", () => {
 baskets.forEach(function (btn) {
   btn.addEventListener("click", (e) => {
     const shoe = e.target.parentElement.parentElement.parentElement;
+    const custom = e.currentTarget.parentElement.children[2];
 
     const item = document.createElement("div");
     item.classList.add("item");
@@ -54,19 +58,34 @@ baskets.forEach(function (btn) {
 
     const itemPrice = document.createElement("span");
     itemPrice.classList.add("item-price");
-    itemPrice.textContent = shoe.children[1].children[1].textContent;
+    itemPrice.textContent = shoe.children[1].children[1].dataset.id + " $";
 
     const itemImg = document.createElement("img");
     itemImg.classList.add("item-img");
     itemImg.src = shoe.children[0].src;
 
+    const itemCount = document.createElement("span");
+    itemCount.classList.add("item-count");
+    itemCount.textContent = custom.value;
+
     itemLeft.appendChild(itemImg);
     itemRight.appendChild(itemTitle);
     itemRight.appendChild(itemPrice);
+    itemRight.appendChild(itemCount);
 
     item.appendChild(itemLeft);
     item.appendChild(itemRight);
 
     shop.appendChild(item);
+  });
+});
+
+pluss.forEach((plus) => {
+  let count = 1;
+  plus.addEventListener("click", (e) => {
+    const custom = e.currentTarget.parentElement.children[2];
+    count++;
+    console.log(count);
+    custom.value = count;
   });
 });
