@@ -6,9 +6,9 @@ const text = document.querySelector(".text");
 const title = document.querySelector(".title");
 const img = document.querySelector(".img");
 const numbers = document.querySelectorAll(".number");
-const minuss = document.querySelectorAll(".minus");
+const btns = document.querySelectorAll(".btn");
 const pluss = document.querySelectorAll(".plus");
-
+const minuss = document.querySelectorAll(".minus");
 let totalPrice = 0;
 /*
 const items = [
@@ -58,7 +58,7 @@ baskets.forEach(function (btn) {
 
     const itemPrice = document.createElement("span");
     itemPrice.classList.add("item-price");
-    itemPrice.textContent = shoe.children[1].children[1].dataset.id + " $";
+    itemPrice.textContent = shoe.children[1].children[1].dataset.id;
 
     const itemImg = document.createElement("img");
     itemImg.classList.add("item-img");
@@ -66,12 +66,24 @@ baskets.forEach(function (btn) {
 
     const itemCount = document.createElement("span");
     itemCount.classList.add("item-count");
-    itemCount.textContent = custom.value;
+    itemCount.textContent = " $ " + " x " + custom.value + " = ";
+
+    const itemTotalPrice = document.createElement("span");
+    itemTotalPrice.classList.add("item-total-price");
+    itemTotalPrice.textContent = itemPrice.textContent * custom.value;
+
+    totalPrice = itemTotalPrice.textContent;
+
+    const shopTotalPrice = document.createElement("span");
+    shopTotalPrice.classList.add("item-total-price");
+    shopTotalPrice.textContent = " # " + totalPrice;
 
     itemLeft.appendChild(itemImg);
     itemRight.appendChild(itemTitle);
     itemRight.appendChild(itemPrice);
     itemRight.appendChild(itemCount);
+    itemRight.appendChild(itemTotalPrice);
+    itemRight.appendChild(shopTotalPrice);
 
     item.appendChild(itemLeft);
     item.appendChild(itemRight);
@@ -80,12 +92,21 @@ baskets.forEach(function (btn) {
   });
 });
 
-pluss.forEach((plus) => {
-  let count = 1;
-  plus.addEventListener("click", (e) => {
+btns.forEach(function (btn) {
+  btn.addEventListener("click", (e) => {
     const custom = e.currentTarget.parentElement.children[2];
-    count++;
-    console.log(count);
-    custom.value = count;
+    if (btn.classList.contains("plus")) {
+      custom.value++;
+    }
+    if (btn.classList.contains("minus")) {
+      if (custom.value == 1) {
+        custom.style.border = "1px solid red";
+        setTimeout(() => {
+          custom.style.border = "";
+        }, 1500);
+      } else {
+        custom.value--;
+      }
+    }
   });
 });
