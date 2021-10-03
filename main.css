@@ -110,7 +110,7 @@
 .shopping {
   position: absolute;
   top: 5%;
-  right: 10%;
+  left: 5%;
   font-size: 30px;
   padding: 20px;
   cursor: pointer;
@@ -131,20 +131,43 @@
 
 .shop {
   width: 600px;
-  height: 300px;
+  height: 100%;
   background: #fff;
   position: absolute;
+  top: 0;
   right: -100%;
-  bottom: 3%;
-  -webkit-transition: 300ms all;
-  transition: 300ms all;
-  border-radius: 12px;
+  -webkit-transition: 400ms all;
+  transition: 400ms all;
   padding: 10px;
   overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.shop .shop-total-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #7fb944;
 }
 
 .left {
-  right: 3%;
+  right: 0%;
 }
 
 .item {
@@ -153,9 +176,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

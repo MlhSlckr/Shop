@@ -9,30 +9,8 @@ const numbers = document.querySelectorAll(".number");
 const btns = document.querySelectorAll(".btn");
 const pluss = document.querySelectorAll(".plus");
 const minuss = document.querySelectorAll(".minus");
-let totalPrice = 0;
-/*
-const items = [
-  {
-    title: "Shoes1",
-    img: "https://image.cnbcfm.com/api/v1/image/105680013-1547583426762nike1.jpg?v=1547583682&w=1600&h=900",
-    price: "15.00",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sapiente cum amet accusantium exercitationem expedita? A facilis doloribus hic cumque totam non commodi impedit quisquam dolor dicta. Ea,dignissimos corrupti!",
-  },
-  {
-    title: "Shoes2",
-    price: "20.00",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sapiente cum amet accusantium exercitationem expedita? A facilis doloribus hic cumque totam non commodi impedit quisquam dolor dicta. Ea,dignissimos corrupti!",
-  },
-];
-
-window.addEventListener("DOMContentLoaded", () => {
-  const item = items[currentItem];
-  img.src = item.img;
-  title.textContent = item.title;
-  price.textContent = item.price;
-  text.textContent = item.desc;
-});
-*/
+let shopTotal = document.querySelector(".shop-total-price");
+let basket = [];
 
 shopping.addEventListener("click", () => {
   shop.classList.toggle("left");
@@ -72,18 +50,20 @@ baskets.forEach(function (btn) {
     itemTotalPrice.classList.add("item-total-price");
     itemTotalPrice.textContent = itemPrice.textContent * custom.value;
 
-    totalPrice = itemTotalPrice.textContent;
+    basket.push({
+      urun: itemTitle.textContent,
+      price: parseInt(itemTotalPrice.textContent),
+    });
 
-    const shopTotalPrice = document.createElement("span");
-    shopTotalPrice.classList.add("item-total-price");
-    shopTotalPrice.textContent = " # " + totalPrice;
+    let sumBasket = basket.reduce((acc, item) => acc + item.price, 0);
+
+    shopTotal.textContent = sumBasket;
 
     itemLeft.appendChild(itemImg);
     itemRight.appendChild(itemTitle);
     itemRight.appendChild(itemPrice);
     itemRight.appendChild(itemCount);
     itemRight.appendChild(itemTotalPrice);
-    itemRight.appendChild(shopTotalPrice);
 
     item.appendChild(itemLeft);
     item.appendChild(itemRight);
