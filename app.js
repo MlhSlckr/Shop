@@ -48,7 +48,7 @@ baskets.forEach(function (btn) {
 
     const itemTotalPrice = document.createElement("span");
     itemTotalPrice.classList.add("item-total-price");
-    itemTotalPrice.textContent = itemPrice.textContent * custom.value;
+    itemTotalPrice.textContent = itemPrice.textContent * custom.value + " $";
 
     basket.push({
       urun: itemTitle.textContent,
@@ -57,7 +57,7 @@ baskets.forEach(function (btn) {
 
     let sumBasket = basket.reduce((acc, item) => acc + item.price, 0);
 
-    shopTotal.textContent = sumBasket;
+    shopTotal.textContent = sumBasket + " $";
 
     itemLeft.appendChild(itemImg);
     itemRight.appendChild(itemTitle);
